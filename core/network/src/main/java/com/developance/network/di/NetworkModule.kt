@@ -1,5 +1,6 @@
 package com.developance.network.di
 
+import com.developance.network.retrofit.RetrofitImaginaryNetworkApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,11 +13,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object TopicsModule {
+object NetworkModule {
 
     @Singleton
     @Provides
-    fun provivdeOkHttpClinetBuilder(): OkHttpClient {
+    fun provivdesOkHttpClinetBuilder(): OkHttpClient {
 
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.HEADERS)
@@ -28,12 +29,18 @@ object TopicsModule {
 
     @Singleton
     @Provides
-    fun provideResturantsApi(httpClient: OkHttpClient): Retrofit =
+    fun providesRetrofitObject(httpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(
                 GsonConverterFactory.create()
             )
             .client(httpClient)
-            .baseUrl(    "https://api.unsplash.com/")
+            .baseUrl("https://api.unsplash.com/")
             .build()
+
+    @Singleton
+    @Provides
+    fun providesImaginaryApi(retrofit: Retrofit): RetrofitImaginaryNetworkApi =
+        retrofit.create(RetrofitImaginaryNetworkApi::class.java)
+
 }
