@@ -13,18 +13,3 @@ data class RemoteTopic(
     @SerializedName("cover_photo")
     val coverPhoto: CoverPhoto,
 )
-
-fun List<RemoteTopic>.asEntities() =
-    map {
-//        TopicEntity(
-//            id = it.id,
-//            title = it.title,
-//            slug = it.slug,
-//            description = it.description,
-//            coverPhoto = it.coverPhoto.urls.thumb,
-//            totalPhotos = it.totalPhotos,
-//            isFavorite = false
-//        )
-    }
-
-

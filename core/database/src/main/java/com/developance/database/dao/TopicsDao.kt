@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface TopicsDao {
 
     @Query("SELECT * FROM topics")
-    fun pagingSource(): PagingSource<Int, TopicEntity>
+    fun getPagingSource(): PagingSource<Int, TopicEntity>
 
     @Query("SELECT * From topics WHERE is_favorite = 1")
     fun getFavoritedTopicsStream(): Flow<List<TopicEntity>>
