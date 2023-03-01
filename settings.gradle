@@ -16,7 +16,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "imaginary"
 
-include ':core'
 include ':core:common'
 include ':core:data'
 include ':core:data-test'
