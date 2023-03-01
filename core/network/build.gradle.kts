@@ -18,10 +18,6 @@ android {
     }
 }
 
-//secrets {
-//    defaultPropertiesFileName = "secrets.defaults.properties"
-//}
-
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:model"))
@@ -35,4 +31,6 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.gson.core)
+    implementation(libs.retrofit.gson.converter)
 }
