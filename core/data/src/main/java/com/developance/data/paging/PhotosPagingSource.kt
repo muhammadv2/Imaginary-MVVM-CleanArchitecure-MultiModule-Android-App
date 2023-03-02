@@ -29,7 +29,7 @@ class PhotosPagingSource(
                 photoApiService.fetchTopicPhotos(
                     slug = topicsSlug,
                     page = nextPageNumber,
-                ).asDomain()
+                ).map { it.asDomain() }
 
             LoadResult.Page(
                 data = response,

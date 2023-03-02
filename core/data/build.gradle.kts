@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.google.samples.apps.nowinandroid.core.data"
+    namespace = "com.developance.data.model"
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
@@ -27,11 +27,12 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
 
-    implementation(libs.androidx.paging.runtime)
     implementation(libs.room.paging)
     implementation(libs.room.ktx)
     implementation(libs.coil.kt)
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.serialization.json)
+
+    testImplementation(libs.google.truth)
 }

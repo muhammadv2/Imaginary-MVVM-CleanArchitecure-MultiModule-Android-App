@@ -7,7 +7,7 @@ import androidx.room.withTransaction
 import coil.network.HttpException
 import com.developance.database.TopicsDatabase
 import com.developance.database.model.TopicEntity
-import com.developance.model.asEntities
+import com.developance.model.asEntity
 import com.developance.network.ImaginaryNetworkDataSource
 import java.io.IOException
 import javax.inject.Inject
@@ -39,7 +39,7 @@ class TopicsPagingSource @Inject constructor(
                 imaginaryApi.fetchTopics(page = loadKey)
 
             topicsDatabase.withTransaction {
-                topicsDatabase.topicDao.addAll(response.asEntities())
+                topicsDatabase.topicDao.insertOrIgnoreTopics(response.map { it.asEntity() })
             }
             MediatorResult.Success(
                 endOfPaginationReached = pageKey == 2 //todo unsplash topics is less than one pagex30

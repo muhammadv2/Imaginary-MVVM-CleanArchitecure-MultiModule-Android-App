@@ -13,21 +13,13 @@ interface TopicsDao {
     fun getPagingSource(): PagingSource<Int, TopicEntity>
 
     @Query("SELECT * From topics WHERE is_favorite = 1")
-    fun getFavoritedTopicsStream(): Flow<List<TopicEntity>>
+    fun favoritedTopicsStream(): Flow<List<TopicEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addAll(restaurants: List<TopicEntity>)
+    suspend fun insertOrIgnoreTopics(topics: List<TopicEntity>)
 
     @Update(entity = TopicEntity::class)
-    suspend fun updateTopic(partialRestaurant: PartialTopicEntity)
+    suspend fun updateTopic(partialtopic: PartialTopicEntity)
 
-    @Update(entity = TopicEntity::class)
-    suspend fun updateAll(partialRestaurant: List<PartialTopicEntity>)
-
-    @Query("SELECT * From topics WHERE is_favorite = 1")
-    suspend fun getAllFavorited(): List<TopicEntity>
-
-    @Query("DELETE FROM topics")
-    suspend fun clearAll()
 }
 

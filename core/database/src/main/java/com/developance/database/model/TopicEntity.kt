@@ -16,7 +16,7 @@ data class TopicEntity(
     @ColumnInfo(name = "total_photos")
     val totalPhotos: Long,
     @ColumnInfo(name = "cover_photo")
-    val coverPhoto: String,
+    val coverPhoto: String?,
     @ColumnInfo(name = "is_favorite")
     val isFavorite: Boolean,
     @ColumnInfo(name = "description")

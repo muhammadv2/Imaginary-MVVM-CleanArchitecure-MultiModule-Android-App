@@ -1,8 +1,8 @@
 package com.developance.network.retrofit
 
 import com.developance.network.ImaginaryNetworkDataSource
-import com.developance.network.model.RemotePhoto
-import com.developance.network.model.RemoteTopic
+import com.developance.network.model.NetworkPhoto
+import com.developance.network.model.NetworkTopic
 import com.developance.network.model.Response
 import com.google.samples.apps.nowinandroid.core.network.BuildConfig
 import retrofit2.Retrofit
@@ -26,13 +26,13 @@ interface RetrofitImaginaryNetworkApi {
         @Query("page") page: Int?,
         @Query("client_id") accessKey: String = apiKey,
         @Query("per_page") perPage: Int = ITEMS_PER_PAGE
-    ): List<RemotePhoto>
+    ): List<NetworkPhoto>
 
     @GET("photos/{id}/?$apiKey")
     suspend fun fetchPhoto(
         @Path("id") id: String?,
         @Query("client_id") accessKey: String = apiKey
-    ): RemotePhoto
+    ): NetworkPhoto
 
     @GET("search/photos/")
     suspend fun searchPhotos(
@@ -48,7 +48,7 @@ interface RetrofitImaginaryNetworkApi {
         @Query("client_id") accessKey: String = apiKey,
         @Query("order_by") orderBy: String = "featured",
         @Query("per_Page") perPage: Int = ITEMS_PER_PAGE
-    ): List<RemoteTopic>
+    ): List<NetworkTopic>
 }
 
 /**
@@ -59,14 +59,14 @@ class RetrofitImaginaryNetwork @Inject constructor(
     private val networkApi: RetrofitImaginaryNetworkApi
 ) : ImaginaryNetworkDataSource {
 
-    override suspend fun fetchTopics(page: Int?): List<RemoteTopic> =
+    override suspend fun fetchTopics(page: Int?): List<NetworkTopic> =
         networkApi.fetchTopics(page)
 
 
-    override suspend fun fetchTopicPhotos(slug: String?, page: Int?): List<RemotePhoto> =
+    override suspend fun fetchTopicPhotos(slug: String?, page: Int?): List<NetworkPhoto> =
         networkApi.fetchTopicPhotos(slug, page)
 
-    override suspend fun fetchPhoto(id: String?): RemotePhoto =
+    override suspend fun fetchPhoto(id: String?): NetworkPhoto =
         networkApi.fetchPhoto(id)
 
     override suspend fun searchPhotos(query: String?, page: Int?): Response =

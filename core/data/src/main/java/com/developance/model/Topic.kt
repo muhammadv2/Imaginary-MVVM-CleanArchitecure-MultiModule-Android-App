@@ -1,20 +1,18 @@
 package com.developance.model
 
 import com.developance.database.model.TopicEntity
-import com.developance.network.model.RemoteTopic
+import com.developance.network.model.NetworkTopic
 
 
-fun List<RemoteTopic>.asEntities() =
-    map {
-        TopicEntity(
-            id = it.id,
-            title = it.title,
-            slug = it.slug,
-            description = it.description,
-            coverPhoto = it.coverPhoto.urls.thumb,
-            totalPhotos = it.totalPhotos,
-            isFavorite = false
-        )
-    }
+fun NetworkTopic.asEntity() =
 
+    TopicEntity(
+        id = id,
+        title = title,
+        slug = slug,
+        description = description,
+        coverPhoto = coverPhoto.urls.thumb,
+        totalPhotos = totalPhotos,
+        isFavorite = false
+    )
 

@@ -29,7 +29,7 @@ class SearchPagingSource(
                 photoApiService.searchPhotos(
                     query = searchText,
                     page = nextPageNumber,
-                ).result.asDomain()
+                ).result.map { it.asDomain() }
             if (response.isEmpty())
                 return LoadResult.Error(IllegalStateException(INVALID_INPUT))
             LoadResult.Page(

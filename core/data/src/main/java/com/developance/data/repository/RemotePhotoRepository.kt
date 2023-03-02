@@ -3,10 +3,9 @@ package com.developance.data.repository
 import com.developance.data.paging.PhotosPagingSource
 import com.developance.data.paging.SearchPagingSource
 import com.developance.data_store.PhotosStoreManager
-import com.developance.database.TopicsLocalDataSource
+import com.developance.database.TopicsDatabase
 import com.developance.database.model.asExternalModel
 import com.developance.model.data.UserPhoto
-import com.developance.model.data.UserTopic
 import com.developance.model.data.defaultRandomTopic
 import com.developance.network.ImaginaryNetworkDataSource
 import com.developance.network.model.asDomain
@@ -14,18 +13,30 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEmpty
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RemotePhotoRepository @Inject constructor(
+    topicsDb: TopicsDatabase,
     private val imaginaryApi: ImaginaryNetworkDataSource,
     private val dataStoreManager: PhotosStoreManager,
-    private val topicsLocalDataSource: TopicsLocalDataSource,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : PhotosRepository {
 
+
     override val favoritePhotosIdsStream = dataStoreManager.bookmarkedPhotosIds
+
+    override val favoritedTopicsStream = topicsDb.topicDao.favoritedTopicsStream()
+        .map { topics ->
+            topics.map { topic ->
+                topic.asExternalModel()
+            }
+        }.onEmpty {
+            emit(listOf(defaultRandomTopic))
+        }
 
     override fun getPhotoPagingSource(topicsSlug: String) =
         PhotosPagingSource(imaginaryApi, topicsSlug)
@@ -61,20 +72,6 @@ class RemotePhotoRepository @Inject constructor(
             }
             userPhotoDetails.toList()
         }
-
-    override fun fetchFavoriteTopics(): Flow<List<UserTopic>?> = flow {
-        val favoriteTopics =
-            topicsLocalDataSource
-                .getFavoritedTopics()
-                .map { it.asExternalModel() }
-
-        if (favoriteTopics.isNotEmpty())
-            emit(topicsLocalDataSource
-                .getFavoritedTopics()
-                .map { it.asExternalModel() })
-        else
-            emit(listOf(defaultRandomTopic))
-    }
 
 }
 

@@ -7,8 +7,8 @@ import com.developance.model.data.UserPhoto
 import com.google.gson.annotations.SerializedName
 
 
-data class Response(@SerializedName("results") val result: List<RemotePhoto>)
-data class RemotePhoto(
+data class Response(@SerializedName("results") val result: List<NetworkPhoto>)
+data class NetworkPhoto(
     val id: String,
     @SerializedName("created_at")
     val createdAt: String,
@@ -26,27 +26,7 @@ data class RemotePhoto(
     val links: Links,
 )
 
-
-fun List<RemotePhoto>.asDomain(): List<UserPhoto> =
-    map {
-        UserPhoto(
-            id = it.id,
-            createdAt = it.createdAt,
-            width = it.width,
-            height = it.height,
-            color = it.color,
-            blurHash = it.blurHash ?: "",
-            likes = it.likes,
-            description = it.description ?: "",
-            user = it.user,
-            urls = it.urls,
-            links = it.links,
-            location = it.location,
-            downloads = it.downloads
-        )
-    }
-
-fun RemotePhoto.asDomain(): UserPhoto =
+fun NetworkPhoto.asDomain(): UserPhoto =
     UserPhoto(
         id = id,
         createdAt = createdAt,

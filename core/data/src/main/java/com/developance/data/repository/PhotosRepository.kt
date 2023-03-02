@@ -7,8 +7,10 @@ import com.developance.model.data.UserTopic
 import kotlinx.coroutines.flow.Flow
 
 interface PhotosRepository {
+
     val favoritePhotosIdsStream: Flow<Set<String>>
 
+    val  favoritedTopicsStream :Flow<List<UserTopic>>
     fun getPhotoPagingSource(topicsSlug: String): PhotosPagingSource
 
     fun getSearchPagingSource(query: String): SearchPagingSource
@@ -18,7 +20,4 @@ interface PhotosRepository {
     fun fetchPhoto(id: String): Flow<UserPhoto>
 
     suspend fun fetchFavoritePhotos(ids: List<String>): List<UserPhoto>
-
-    fun fetchFavoriteTopics(): Flow<List<UserTopic>?>
-
 }

@@ -23,7 +23,7 @@ data class UserTopic(
     val description:String,
     val isFavorite: Boolean,
     val totalPhotos: Long,
-    val coverPhoto: String
+    val coverPhoto: String?
 )
 
 val defaultRandomTopic = UserTopic(

@@ -8,10 +8,9 @@ plugins {
 
 android {
     defaultConfig {
-
         testInstrumentationRunner = "com.developance.testing.ImaginaryTestRunner"
     }
-    namespace = "com.google.samples.apps.nowinandroid.core.database"
+    namespace = "com.developance.core.database"
 }
 
 dependencies {
@@ -20,10 +19,13 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     implementation(libs.room.paging)
+    implementation(libs.google.truth)
     ksp(libs.room.compiler)
 
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.datetime)
+
+    testImplementation(libs.turbine)
 
     androidTestImplementation(project(":core:testing"))
 }
