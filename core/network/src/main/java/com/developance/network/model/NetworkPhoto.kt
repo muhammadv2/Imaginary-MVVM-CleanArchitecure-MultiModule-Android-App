@@ -1,9 +1,7 @@
 package com.developance.network.model
 
-import com.developance.model.data.ImageUrls
-import com.developance.model.data.Links
+import com.developance.model.data.*
 import com.developance.model.data.Photographer
-import com.developance.model.data.UserPhoto
 import com.google.gson.annotations.SerializedName
 
 
@@ -22,12 +20,13 @@ data class NetworkPhoto(
     val description: String?,
     val user: Photographer,
     val urls: ImageUrls,
-    val location: com.developance.model.data.Location?,
+    val location: Location?,
     val links: Links,
 )
 
-fun NetworkPhoto.asDomain(): UserPhoto =
-    UserPhoto(
+
+fun NetworkPhoto.asExternalModel(): Photo =
+    Photo(
         id = id,
         createdAt = createdAt,
         width = width,

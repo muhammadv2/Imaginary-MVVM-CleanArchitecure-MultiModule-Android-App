@@ -5,8 +5,8 @@ package com.developance.testing.repository
 import com.developance.data.paging.PhotosPagingSource
 import com.developance.data.paging.SearchPagingSource
 import com.developance.data.repository.PhotosRepository
-import com.developance.model.data.UserPhoto
-import com.developance.model.data.UserTopic
+import com.developance.model.data.Photo
+import com.developance.model.data.Topic
 import kotlinx.coroutines.flow.Flow
 
 class TestPhotosRepository() : PhotosRepository {
@@ -14,7 +14,7 @@ class TestPhotosRepository() : PhotosRepository {
     override val favoritePhotosIdsStream: Flow<Set<String>>
         get() = TODO("Not yet implemented")
 
-    override val favoritedTopicsStream: Flow<List<UserTopic>>
+    override val favoritedTopicsStream: Flow<List<Topic>>
         get() = TODO("Not yet implemented")
 
 
@@ -30,11 +30,11 @@ class TestPhotosRepository() : PhotosRepository {
         TODO("Not yet implemented")
     }
 
-    override fun fetchPhoto(id: String): Flow<UserPhoto> {
+    override fun fetchPhoto(id: String): Flow<Photo> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun fetchFavoritePhotos(ids: List<String>): List<UserPhoto> {
+    override suspend fun fetchFavoritePhotos(ids: List<String>): List<Photo> {
         TODO("Not yet implemented")
     }
 

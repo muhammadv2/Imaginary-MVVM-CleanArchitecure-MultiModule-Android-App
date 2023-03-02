@@ -3,7 +3,7 @@ package com.developance.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.developance.model.data.UserTopic
+import com.developance.model.data.Topic
 
 @Entity(tableName = "topics")
 data class TopicEntity(
@@ -25,7 +25,7 @@ data class TopicEntity(
 
 
 
-fun TopicEntity.asExternalModel() = UserTopic(
+fun TopicEntity.asExternalModel() = Topic(
     id = id,
     title = title,
     slug = slug,

@@ -1,4 +1,10 @@
-package com.developance.model.data
+package com.developance.domain.model
+
+import com.developance.model.data.ImageUrls
+import com.developance.model.data.Links
+import com.developance.model.data.Location
+import com.developance.model.data.Photographer
+
 
 data class UserPhoto(
     val id: String,
@@ -38,7 +44,7 @@ fun previewPhotos() = listOf(
             full = "",
             thumb = ""
         ),
-        location = Location("japan", "japan"),
+        location = com.developance.model.data.Location("japan", "japan"),
         Links("", ""),
         downloads = 122L
     ),
@@ -79,7 +85,7 @@ fun previewPhotos() = listOf(
             "1",
             "Muhammad",
 
-        ),
+            ),
         ImageUrls(
             small = "https://images.unsplash.com/photo-1519999482648-25049ddd37b1",
             raw = "",

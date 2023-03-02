@@ -5,10 +5,10 @@ import com.developance.data.paging.SearchPagingSource
 import com.developance.data_store.PhotosStoreManager
 import com.developance.database.TopicsDatabase
 import com.developance.database.model.asExternalModel
-import com.developance.model.data.UserPhoto
+import com.developance.model.data.Photo
 import com.developance.model.data.defaultRandomTopic
 import com.developance.network.ImaginaryNetworkDataSource
-import com.developance.network.model.asDomain
+import com.developance.network.model.asExternalModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -52,17 +52,17 @@ class RemotePhotoRepository @Inject constructor(
             dataStoreManager.removeBookmarkedPhotoId(id)
     }
 
-    override fun fetchPhoto(id: String): Flow<UserPhoto> = flow {
-        emit(imaginaryApi.fetchPhoto(id).asDomain())
+    override fun fetchPhoto(id: String): Flow<Photo> = flow {
+        emit(imaginaryApi.fetchPhoto(id).asExternalModel())
     }
 
-    override suspend fun fetchFavoritePhotos(ids: List<String>): List<UserPhoto> =
+    override suspend fun fetchFavoritePhotos(ids: List<String>): List<Photo> =
         withContext(defaultDispatcher) {
-            val userPhotoDetails = mutableListOf<UserPhoto>()
+            val userPhotoDetails = mutableListOf<Photo>()
             ids.forEach {
                 launch {
                     try {
-                        userPhotoDetails.add(imaginaryApi.fetchPhoto(it).asDomain())
+                        userPhotoDetails.add(imaginaryApi.fetchPhoto(it).asExternalModel())
                     } catch (ex: Exception) {
                         //no need to handle exception as if anything wrong happend when one photo
                         // data will not be added to the list

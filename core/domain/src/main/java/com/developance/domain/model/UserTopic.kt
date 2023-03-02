@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.developance.model.data
+package com.developance.domain.model
+
+import com.developance.model.data.Topic
 
 data class UserTopic(
     val id: String,
@@ -26,15 +28,6 @@ data class UserTopic(
     val coverPhoto: String?
 )
 
-val defaultRandomTopic = UserTopic(
-    "1",
-    "Random",
-    "wallpapers",
-    "Random",
-    true,
-    58,
-    ""
-)
 fun previewUserUserTopics() = listOf(
         UserTopic(
             "1",

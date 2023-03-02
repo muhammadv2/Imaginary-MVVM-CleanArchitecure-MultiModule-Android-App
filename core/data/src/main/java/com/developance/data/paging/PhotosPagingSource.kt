@@ -2,34 +2,33 @@ package com.developance.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import androidx.paging.RemoteMediator
 import coil.network.HttpException
-import com.developance.model.data.UserPhoto
+import com.developance.model.data.Photo
 import com.developance.network.ImaginaryNetworkDataSource
-import com.developance.network.model.asDomain
+import com.developance.network.model.asExternalModel
 import java.io.IOException
 
 class PhotosPagingSource(
     private val photoApiService: ImaginaryNetworkDataSource,
     private val topicsSlug: String,
 ) :
-    PagingSource<Int, UserPhoto>() {
+    PagingSource<Int, Photo>() {
 
     // The refresh key is used for the initial load of the next PagingSource, after invalidation
-    override fun getRefreshKey(state: PagingState<Int, UserPhoto>): Int {
+    override fun getRefreshKey(state: PagingState<Int, Photo>): Int {
 
         return (state.anchorPosition ?: 0) - state.config.initialLoadSize / 2.coerceAtLeast(0)
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserPhoto> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Photo> {
         val nextPageNumber = params.key ?: STARTING_KEY
 
         return try {
-            val response: List<UserPhoto> =
+            val response: List<Photo> =
                 photoApiService.fetchTopicPhotos(
                     slug = topicsSlug,
                     page = nextPageNumber,
-                ).map { it.asDomain() }
+                ).map { it.asExternalModel() }
 
             LoadResult.Page(
                 data = response,
