@@ -1,10 +1,10 @@
 package com.developance.network.retrofit
 
+import com.developance.imaginary.core.network.BuildConfig
 import com.developance.network.ImaginaryNetworkDataSource
 import com.developance.network.model.NetworkPhoto
 import com.developance.network.model.NetworkTopic
 import com.developance.network.model.Response
-import com.google.samples.apps.nowinandroid.core.network.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -34,7 +34,7 @@ interface RetrofitImaginaryNetworkApi {
         @Query("client_id") accessKey: String = apiKey
     ): NetworkPhoto
 
-    @GET("search/photos/")
+    @GET("search.json/photos/")
     suspend fun searchPhotos(
         @Query("query") query: String?,
         @Query("page") page: Int?,

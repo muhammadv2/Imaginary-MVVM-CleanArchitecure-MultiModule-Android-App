@@ -16,9 +16,9 @@
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import com.google.samples.apps.imaginary.configureFlavors
-import com.google.samples.apps.imaginary.configureKotlinAndroid
-import com.google.samples.apps.imaginary.configurePrintApksTask
+import com.developance.imaginary.configureFlavors
+import com.developance.imaginary.configureKotlinAndroid
+import com.developance.imaginary.configurePrintApksTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension

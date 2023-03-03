@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.developance.data.model"
+    namespace = "com.developance.imaginary.data.model"
     testOptions {
         unitTests {
             isIncludeAndroidResources = true

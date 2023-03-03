@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.google.samples.apps.nowinandroid.core.domain"
+    namespace = "com.developance.imaginary.core.domain"
 }
 
 dependencies {

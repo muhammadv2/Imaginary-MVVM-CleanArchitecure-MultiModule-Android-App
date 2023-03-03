@@ -4,9 +4,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-
     }
-
 }
 
 dependencyResolutionManagement {
@@ -17,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "imaginary"
-
+include(":app")
 include ':core:common'
 include ':core:data'
 include ':core:data-test'
@@ -32,7 +30,7 @@ include ':feature'
 include(":feature:topics")
 include(":feature:favorites")
 include(":feature:search")
-include(":feature:detail")
+include(":feature:details")
 include(":lint")
 include(":sync:work")
 include(":sync:sync-test")

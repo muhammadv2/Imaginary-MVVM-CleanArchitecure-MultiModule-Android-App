@@ -4,7 +4,9 @@ import com.developance.model.data.*
 import com.developance.model.data.Photographer
 import com.google.gson.annotations.SerializedName
 
-
+/**
+ * Wrapper for Search photos response
+ */
 data class Response(@SerializedName("results") val result: List<NetworkPhoto>)
 data class NetworkPhoto(
     val id: String,
@@ -15,8 +17,8 @@ data class NetworkPhoto(
     val color: String,
     @SerializedName("blur_hash")
     val blurHash: String?,
-    val likes: Long,
-    val downloads: Long,
+    val likes: Long?,
+    val downloads: Long?,
     val description: String?,
     val user: Photographer,
     val urls: ImageUrls,

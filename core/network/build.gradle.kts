@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("imaginary.android.library")
     id("imaginary.android.hilt")
@@ -5,12 +7,12 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
-@Suppress("UnstableApiUsage")
 android {
     buildFeatures {
         buildConfig = true
     }
-    namespace = "com.google.samples.apps.nowinandroid.core.network"
+    namespace = "com.developance.imaginary.core.network"
+
     testOptions {
         unitTests {
             isIncludeAndroidResources = true

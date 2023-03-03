@@ -15,7 +15,7 @@
  */
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.google.samples.apps.imaginary.configureJacoco
+import com.developance.imaginary.configureJacoco
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.developance.common"
+    namespace = "com.developance.imaginary.common"
 }
 
 dependencies {
