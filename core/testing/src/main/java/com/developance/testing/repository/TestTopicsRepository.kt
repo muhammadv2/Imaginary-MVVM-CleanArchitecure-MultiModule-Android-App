@@ -1,12 +1,12 @@
 
 package com.developance.testing.repository
 
-import com.developance.data.paging.TopicsPagingSource
+import com.developance.data.paging.TopicRemoteMediator
 import com.developance.data.repository.TopicsRepository
 
 class TestTopicsRepository : TopicsRepository {
 
-    override fun getTopicsRemoteMediator(): TopicsPagingSource {
+    override fun getTopicsRemoteMediator(): TopicRemoteMediator {
         TODO("Not yet implemented")
     }
 

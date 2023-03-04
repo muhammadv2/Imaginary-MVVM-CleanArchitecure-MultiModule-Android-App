@@ -1,6 +1,6 @@
 package com.developance.data.repository
 
-import com.developance.data.paging.TopicsPagingSource
+import com.developance.data.paging.TopicRemoteMediator
 import com.developance.database.TopicsDatabase
 import com.developance.database.model.PartialTopicEntity
 import com.developance.network.ImaginaryNetworkDataSource
@@ -14,7 +14,7 @@ class OfflineFirstTopicsRepository @Inject constructor(
 ) : TopicsRepository {
 
     override fun getTopicsRemoteMediator() =
-        TopicsPagingSource(topicsDb, imaginaryApi)
+        TopicRemoteMediator(topicsDb, imaginaryApi)
 
     override fun getTopicsPagingSource() =
         topicsDb.topicDao.getPagingSource()

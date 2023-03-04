@@ -1,12 +1,12 @@
 package com.developance.data.repository
 
 import androidx.paging.PagingSource
-import com.developance.data.paging.TopicsPagingSource
+import com.developance.data.paging.TopicRemoteMediator
 import com.developance.database.model.TopicEntity
 
 interface TopicsRepository {
 
-    fun getTopicsRemoteMediator(): TopicsPagingSource
+    fun getTopicsRemoteMediator(): TopicRemoteMediator
 
     fun getTopicsPagingSource(): PagingSource<Int, TopicEntity>
 
