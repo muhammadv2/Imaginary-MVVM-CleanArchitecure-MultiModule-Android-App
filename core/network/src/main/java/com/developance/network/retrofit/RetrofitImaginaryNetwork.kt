@@ -66,10 +66,10 @@ class RetrofitImaginaryNetwork @Inject constructor(
     override suspend fun fetchTopicPhotos(slug: String?, page: Int?): List<NetworkPhoto> =
         networkApi.fetchTopicPhotos(slug, page)
 
-    override suspend fun fetchPhoto(id: String?): NetworkPhoto =
+    override suspend fun fetchPhotoDetails(id: String?): NetworkPhoto =
         networkApi.fetchPhoto(id)
 
-    override suspend fun searchPhotos(query: String?, page: Int?): Response =
+    override suspend fun fetchPhotosByQuery(query: String?, page: Int?): Response =
         networkApi.searchPhotos(query, page)
 
 }

@@ -9,8 +9,8 @@ interface ImaginaryNetworkDataSource {
     suspend fun fetchTopics(page: Int?): List<NetworkTopic>
     suspend fun fetchTopicPhotos(slug: String?, page: Int?): List<NetworkPhoto>
 
-    suspend fun fetchPhoto(id: String?): NetworkPhoto
+    suspend fun fetchPhotoDetails(id: String?): NetworkPhoto
 
-    suspend fun searchPhotos(query: String?, page: Int?): Response
+    suspend fun fetchPhotosByQuery(query: String?, page: Int?): Response
 
 }

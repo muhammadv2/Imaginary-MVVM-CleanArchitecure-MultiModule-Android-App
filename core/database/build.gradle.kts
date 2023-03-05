@@ -1,5 +1,5 @@
-
 @Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
     id("imaginary.android.library")
     id("imaginary.android.hilt")

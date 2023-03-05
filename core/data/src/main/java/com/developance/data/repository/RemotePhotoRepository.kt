@@ -53,7 +53,7 @@ class RemotePhotoRepository @Inject constructor(
     }
 
     override fun fetchPhoto(id: String): Flow<Photo> = flow {
-        emit(imaginaryApi.fetchPhoto(id).asExternalModel())
+        emit(imaginaryApi.fetchPhotoDetails(id).asExternalModel())
     }
 
     override suspend fun fetchFavoritePhotos(ids: List<String>): List<Photo> =
@@ -62,7 +62,7 @@ class RemotePhotoRepository @Inject constructor(
             ids.forEach {
                 launch {
                     try {
-                        userPhotoDetails.add(imaginaryApi.fetchPhoto(it).asExternalModel())
+                        userPhotoDetails.add(imaginaryApi.fetchPhotoDetails(it).asExternalModel())
                     } catch (ex: Exception) {
                         //no need to handle exception as if anything wrong happend when one photo
                         // data will not be added to the list

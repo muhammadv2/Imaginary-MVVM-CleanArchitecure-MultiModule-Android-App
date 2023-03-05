@@ -37,6 +37,7 @@ class TopicRemoteMediator @Inject constructor(
             val response = imaginaryApi.fetchTopics(page = loadKey)
 
             val endOfPaginationReached = response.isEmpty()
+
             topicsDatabase.withTransaction {
                 topicsDatabase.topicDao.insertOrIgnoreTopics(response.map { it.asEntity() })
             }

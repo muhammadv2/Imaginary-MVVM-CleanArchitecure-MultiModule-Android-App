@@ -111,7 +111,6 @@ class TopicsDaoTest {
                 assertThat(awaitItem().first().isFavorite).isEqualTo(true)
             }
     }
-
 }
 
 private fun testTopicEntity(

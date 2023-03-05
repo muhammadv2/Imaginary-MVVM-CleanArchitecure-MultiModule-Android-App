@@ -1,5 +1,6 @@
 import androidx.annotation.VisibleForTesting
 import com.developance.network.fake.FakeAssetManager
+import java.io.BufferedReader
 import java.io.File
 import java.io.InputStream
 import java.util.*
@@ -21,5 +22,6 @@ internal object JvmUnitTestFakeAssetManager : FakeAssetManager {
     private val properties = Properties().apply { config.openStream().use(::load) }
     private val assets = File(properties["android_merged_assets"].toString())
 
-    override fun open(fileName: String): InputStream = File(assets, fileName).inputStream()
+    override fun open(fileName: String): BufferedReader =
+        File(assets, fileName).inputStream().bufferedReader()
 }

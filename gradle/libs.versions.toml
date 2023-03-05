@@ -113,6 +113,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = "lint" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-mock = { group = 'com.squareup.retrofit2', name = 'retrofit-mock', version.ref = 'retrofit' }
 retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson" }
 gson-core = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }

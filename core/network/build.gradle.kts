@@ -31,7 +31,9 @@ dependencies {
     implementation(libs.kotlinx.datetime)
 
     implementation(libs.okhttp.logging)
-    implementation(libs.retrofit.core)
     implementation(libs.gson.core)
+    implementation(libs.retrofit.core)
     implementation(libs.retrofit.gson.converter)
+
+    testImplementation(libs.google.truth)
 }

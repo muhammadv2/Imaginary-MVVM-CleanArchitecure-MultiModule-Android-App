@@ -103,7 +103,7 @@ class FakeImaginaryNetworkDataSourceTest {
                 ),
             ),
             /* ktlint-enable max-line-length */
-            subject.fetchPhoto("")
+            subject.fetchPhotoDetails("")
         )
     }
 
@@ -136,7 +136,7 @@ class FakeImaginaryNetworkDataSourceTest {
                 ),
             ),
             /* ktlint-enable max-line-length */
-            subject.searchPhotos("", 1).result.first()
+            subject.fetchPhotosByQuery("", 1).result[5]
         )
     }
 

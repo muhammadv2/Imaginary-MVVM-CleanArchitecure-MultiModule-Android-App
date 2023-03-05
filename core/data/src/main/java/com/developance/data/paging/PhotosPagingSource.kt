@@ -15,9 +15,18 @@ class PhotosPagingSource(
     PagingSource<Int, Photo>() {
 
     // The refresh key is used for the initial load of the next PagingSource, after invalidation
-    override fun getRefreshKey(state: PagingState<Int, Photo>): Int {
-
-        return (state.anchorPosition ?: 0) - state.config.initialLoadSize / 2.coerceAtLeast(0)
+    override fun getRefreshKey(state: PagingState<Int, Photo>): Int? {
+        // Try to find the page key of the closest page to anchorPosition, from
+        // either the prevKey or the nextKey, but you need to handle nullability
+        // here:
+        //  * prevKey == null -> anchorPage is the first page.
+        //  * nextKey == null -> anchorPage is the last page.
+        //  * both prevKey and nextKey null -> anchorPage is the initial page, so
+        //    just return null.
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Photo> {
@@ -37,9 +46,8 @@ class PhotosPagingSource(
             )
         } catch (e: IOException) {
             LoadResult.Error(e)
-        } catch (e: HttpException) {
-            LoadResult.Error(e)
         }
+        // TODO Must check for HttpException for any non-2xx HTTP status codes.
 
     }
 

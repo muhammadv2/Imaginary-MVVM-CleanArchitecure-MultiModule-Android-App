@@ -16,6 +16,7 @@ android {
 
         // Custom test runner to set up Hilt dependency graph
         testInstrumentationRunner = "com.developance.imaginary.core.testing.ImaginaryTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
